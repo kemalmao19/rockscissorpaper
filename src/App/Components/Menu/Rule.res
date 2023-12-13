@@ -4,21 +4,18 @@ let make = () => {
   <div className="flex flex-col items-center lg:items-end">
     <div
       id="rules"
-      className={`fixed z-50 bg-white py-20 px-10 top-0 left-0 w-screen h-screen flex flex-col justify-between items-center ${state === HideRule
+      className={`fixed lg:static z-50 bg-white py-20 px-10 top-0 left-0 w-screen lg:w-1/2 h-screen flex flex-col justify-between items-center ${state === HideRule
           ? "hidden"
           : ""}`}>
-      <section className="flex justify-between items-center">
-        <h1 className="text-dark-text text-xl"> {React.string("RULES")} </h1>
-
-      </section>
+      <h1 className="text-dark-text text-2xl"> {React.string("RULES")} </h1>
       <section className="flex justify-center items-center">
         <img src="/image-rules-bonus.svg" />
       </section>
-              {state === DisplayRule
-          ? <div className="text-dark-text text-xl cursor-pointer" onClick={_ => dispatch(Toggle)}>
-              <img src="/icon-close.svg" />
-            </div>
-          : <> </>}
+      {state === DisplayRule
+        ? <div className="text-dark-text text-xl cursor-pointer" onClick={_ => dispatch(Toggle)}>
+            <img src="/icon-close.svg" />
+          </div>
+        : <> </>}
     </div>
     <div
       onClick={_ => dispatch(Toggle)}
