@@ -26,7 +26,7 @@ module.exports = {
         DEFAULT: "hsl(261, 73%, 60%)",
         gradient: "linear-gradient(to right, hsl(261, 73%, 60%), hsl(261, 72%, 63%))",
       },
-      cyan: {
+      spock: {
         DEFAULT: "hsl(189, 59%, 53%)",
         gradient: "linear-gradient(to right, hsl(189, 59%, 53%), hsl(189, 58%, 57%))",
       },
@@ -35,7 +35,7 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        'pentagon': "url('../public/bg-pentagon.svg')",
+        'pentagon': "url('/bg-pentagon.svg')",
       }
     },
   },

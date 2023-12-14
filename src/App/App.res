@@ -1,14 +1,37 @@
 open Game
+let list_of_button: array<string> = ["lizard", "rock", "paper", "scissors", "spock"]
+let position = (idx) => switch idx {
+  | 0 => "-top-1"
+  | 1 => "top-[70px] -right-6"
+  | 2 => "-bottom-3 right-4"
+  | 3 => "-bottom-3 left-4"
+  | 4 => "top-[70px] -left-6"
+  | _ => "top-0"
+}
+
 @react.component
 let make = () => {
-    let (pick, setPick) = React.useState(()=>Rock)
+  let (pick, setPick) = React.useState(() => Rock)
+
+  let handleClick = (i) => {
+    setPick(_=>pickHand(i))
+  }
+
+  Js.log(pick)
   <Layout>
-    <div className="bg-pentagon border-2">
-      <div className="p-4 w-20 h-20 flex justify-center items-center bg-white rounded-full border-8 cursor-pointer hover:scale-105 border-lizard"><img src="/icon-lizard.svg"/></div>
-      <div className="p-4 w-20 h-20 flex justify-center items-center bg-white rounded-full border-8 cursor-pointer hover:scale-105 border-paper"><img src="/icon-paper.svg"/></div>
-      <div className="p-4 w-20 h-20 flex justify-center items-center bg-white rounded-full border-8 cursor-pointer hover:scale-105 border-rock"><img src="/icon-rock.svg"/></div>
-      <div className="p-4 w-20 h-20 flex justify-center items-center bg-white rounded-full border-8 cursor-pointer hover:scale-105 border-scissors"><img src="/icon-scissors.svg"/></div>
-      <div className="p-4 w-20 h-20 flex justify-center items-center bg-white rounded-full border-8 cursor-pointer hover:scale-105 border-cyan"><img src="/icon-spock.svg"/></div>
+  <div className="flex justify-center items-center">
+    {<div className="relative flex justify-center items-center bg-pentagon w-[330px] h-[310px]">
+      {list_of_button
+      ->Belt.Array.mapWithIndex((i, x) => {
+        <div 
+          onClick=(_=>handleClick(i))
+          key={i->Belt.Int.toString} 
+          className={`${Lib.buttonStyle} border-${x} ${position(i)}`}>
+          <img src={`/icon-${x}.svg`} />
+        </div>
+      })
+      ->React.array}
+    </div>}
     </div>
   </Layout>
 }
