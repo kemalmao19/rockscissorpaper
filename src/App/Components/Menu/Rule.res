@@ -4,7 +4,8 @@ let make = () => {
   <div className="flex flex-col items-center lg:items-end">
     <div
       id="rules"
-      className={`fixed lg:static z-50 bg-white py-20 px-10 top-0 left-0 w-screen lg:w-1/2 h-screen flex flex-col justify-between items-center ${state === HideRule
+      className={`lg:static z-50 bg-white py-20 px-10 top-0 left-0 w-screen lg:w-1/2 h-screen flex flex-col justify-between items-center ${state ===
+          HideRule
           ? "hidden"
           : ""}`}>
       <h1 className="text-dark-text text-2xl"> {React.string("RULES")} </h1>
