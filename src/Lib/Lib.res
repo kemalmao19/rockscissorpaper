@@ -1,1 +1,0 @@
-let buttonStyle: string = "absolute p-4 w-20 h-20 flex justify-center items-center bg-white rounded-full border-8 cursor-pointer hover:scale-105" 

@@ -1,3 +1,10 @@
+@scope("Math") @val external random: unit => float = "random"
+@scope("Math") @val external floor: float => int = "floor"
+
+type timerId
+@val external setTimeout: (unit => unit, int) => timerId = "setTimeout"
+@val external clearTimeout: timerId => unit = "clearTimeout"
+
 type hand =
   | Rock
   | Paper

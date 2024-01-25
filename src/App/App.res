@@ -10,7 +10,7 @@ let selectIcon = icon =>
   | Scissor => "scissor"
   | Spock => "spock"
   }
-  
+
 let position = idx =>
   switch idx {
   | 0 => "border-lizard -top-1"
