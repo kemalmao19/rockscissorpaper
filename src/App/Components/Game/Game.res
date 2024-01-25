@@ -37,12 +37,3 @@ let play = (player, comp) =>
     | Lose => Js.log("kalah")
     | Draw => Js.log("draw")
   } 
-
-let pickHand = (idx) => switch idx {
-  | 0 => Lizard
-  | 1 => Rock
-  | 2 => Paper
-  | 3 => Scissor
-  | 4 => Scissor
-  | _ => Spock
-}

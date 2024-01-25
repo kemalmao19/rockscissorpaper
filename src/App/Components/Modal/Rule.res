@@ -4,7 +4,7 @@ let make = () => {
   <div className="flex flex-col items-center lg:items-end">
     <div
       id="rules"
-      className={`lg:static z-50 bg-white py-20 px-10 top-0 left-0 w-screen lg:w-1/2 h-screen flex flex-col justify-between items-center ${state ===
+      className={`lg:static z-50 bg-white py-20 px-10 absolute top-0 left-0 w-screen lg:w-1/2 h-screen flex flex-col justify-between items-center ${state ===
           HideRule
           ? "hidden"
           : ""}`}>
@@ -20,7 +20,7 @@ let make = () => {
     </div>
     <div
       onClick={_ => dispatch(Toggle)}
-      className="inline-block border-header-outline border-4 py-2 px-10 rounded-xl text-white hover:bg-white hover:text-dark-text cursor-pointer">
+      className="inline-block border-header-outline border-4 py-2 px-10 rounded-xl text-white hover:bg-white hover:text-dark-text cursor-pointer trasnsition-all duration-300 ease-in-out">
       {React.string("RULES")}
     </div>
   </div>
