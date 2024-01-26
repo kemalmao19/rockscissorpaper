@@ -4,8 +4,6 @@ type action = Increment | Decrement | Pause
 let make = () => {
   let (state, dispatch) = ScoreState.Context.use()
 
-  Js.log(state)
-
   <div className="flex justify-between items-center p-4 border-header-outline border-4 rounded-2xl">
     <section className="text-white -space-y-3 text-lg">
       <h1> {React.string("ROCK")} </h1>

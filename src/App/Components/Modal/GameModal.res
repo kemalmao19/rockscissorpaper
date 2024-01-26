@@ -67,8 +67,8 @@ let make = (~pick, ~setOpen) => {
     None
   }, ([winner], [scoreUpdated]))
 
-  <>
-    <div id="game" className={`grid grid-cols-2`}>
+  <div className="flex flex-col items-center">
+    <div id="game" className={`grid grid-cols-2 gap-10`}>
       <div className="flex flex-col items-center gap-4">
         <section
           className={`${setColor(
@@ -98,12 +98,14 @@ let make = (~pick, ~setOpen) => {
     {!isLoading
       ? <div className="flex flex-col justify-center items-center mt-12 gap-4 w-3/4 mx-auto">
           <div className="text-white text-6xl text-center"> {gameStatus(winner)} </div>
-          <button
-            onClick={_ => setOpen(_ => false)}
-            className="p-4 w-full flex justify-center items-center bg-white rounded-lg hover:scale-110 trasnsition-all duration-300 ease-in-out">
-            <h2 className="text-dark-text text-2xl"> {"PLAY AGAIN" |> React.string} </h2>
-          </button>
+          <div className="lg:w-2/4 w-full">
+            <button
+              onClick={_ => setOpen(_ => false)}
+              className="p-4 w-full flex justify-center items-center bg-white rounded-lg hover:scale-110 trasnsition-all duration-300 ease-in-out">
+              <h2 className="text-dark-text text-2xl"> {"PLAY AGAIN" |> React.string} </h2>
+            </button>
+          </div>
         </div>
       : <> </>}
-  </>
+  </div>
 }
