@@ -4,7 +4,7 @@ let make = () => {
   <div className="flex flex-col items-center lg:items-end">
     <div
       id="rules"
-      className={`lg:static z-50 bg-white py-20 px-10 absolute top-0 left-0 w-screen lg:w-1/2 h-screen flex flex-col justify-between items-center ${state ===
+      className={` z-50 bg-white py-20 lg:py-10 px-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-screen lg:w-1/2 lg:h-3/4 h-screen flex flex-col justify-between items-center lg:gap-6 ${state ===
           HideRule
           ? "hidden"
           : ""}`}>
