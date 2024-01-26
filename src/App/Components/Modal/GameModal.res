@@ -28,6 +28,7 @@ let winType = x =>
 let make = (~pick, ~setOpen) => {
   let (isLoading, setIsLoading) = React.useState(() => true)
   let (state, dispatch) = ScoreState.Context.use()
+  let (scoreUpdated, setScoreUpdated) = React.useState(() => true)
 
   let winner = play(pick |> winType, housePick->Option.getUnsafe |> winType)
 
@@ -38,7 +39,33 @@ let make = (~pick, ~setOpen) => {
     | Draw => React.string("DRAW")
     }
 
-  let _ = setTimeout(() => setIsLoading(_ => false), 2000)
+  React.useEffect1(() => {
+    let _ = setTimeout(() => {
+      setIsLoading(_ => false)
+      setScoreUpdated(_ => false) // Reset the scoreUpdated flag
+    }, 2000)
+    None
+  }, [])
+
+  React.useEffect2(() => {
+    let scoreWin = x =>
+      switch x {
+      | Win =>
+        if !scoreUpdated && !isLoading {
+          dispatch(Increment)
+          setScoreUpdated(_ => true)
+        }
+      | Lose =>
+        if !scoreUpdated && !isLoading {
+          dispatch(Decrement)
+          setScoreUpdated(_ => true)
+        }
+      | Draw => ()
+      }
+
+    let _ = setTimeout(() => scoreWin(winner), 2000)
+    None
+  }, ([winner], [scoreUpdated]))
 
   <>
     <div id="game" className={`grid grid-cols-2`}>
