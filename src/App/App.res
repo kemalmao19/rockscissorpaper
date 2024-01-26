@@ -50,6 +50,6 @@ let make = () => {
             ->React.array}
           </div>}
         </div>
-      : <GameModal pick={pick} setOpen={setOpenGame} />}
+      : <ScoreState.Provider><GameModal pick={pick} setOpen={setOpenGame} /></ScoreState.Provider>}
   </GameSection>
 }
