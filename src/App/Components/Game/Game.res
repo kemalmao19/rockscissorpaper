@@ -38,9 +38,3 @@ let play = (player, comp) =>
 
   let a = Rock
   let b = Paper
-
-  let gameStatus = (p) => switch p {
-    | Win => Js.log("menang")
-    | Lose => Js.log("kalah")
-    | Draw => Js.log("draw")
-  } 

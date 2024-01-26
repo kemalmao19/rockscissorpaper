@@ -25,36 +25,50 @@ let winType = x =>
   }
 
 @react.component
-let make = (~pick) => {
+let make = (~pick, ~setOpen) => {
+  let (isLoading, setIsLoading) = React.useState(() => true)
 
   let winner = play(pick |> winType, housePick->Option.getUnsafe |> winType)
-  let res = setTimeout(() => gameStatus(winner), 2000)
 
-  let handleClose = (e:JsxEvent.Mouse.t) => {
-    if (%raw("e.target !== e.currentTarget")) {
-      ()
+  let gameStatus = p =>
+    switch p {
+    | Win => React.string("YOU WIN")
+    | Lose => React.string("YOU LOSE")
+    | Draw => React.string("DRAW")
     }
-    Js.log("helo")
-  };
 
-  <div id="game" className={`grid grid-cols-2 my-10`} onClick={(e) => handleClose(e)}>
-    <div className="flex flex-col items-center gap-4">
-      <section
-        className={`${setColor(
-            pick,
-          )} p-4 w-40 h-40 flex justify-center items-center bg-white rounded-full border-[16px] cursor-pointer hover:scale-110 trasnsition-all duration-300 ease-in-out`}>
-        <img src={`/icon-${pick}.svg`} />
-      </section>
-      <h2 className="text-white text-2xl"> {"YOU PICKED" |> React.string} </h2>
+  let loading = setTimeout(() => setIsLoading(_ => false), 2000)
+
+  <>
+    <div id="game" className={`grid grid-cols-2 my-10`}>
+      <div className="flex flex-col items-center gap-4">
+        <section
+          className={`${setColor(
+              pick,
+            )} p-4 w-40 h-40 flex justify-center items-center bg-white rounded-full border-[16px]`}>
+          <img src={`/icon-${pick}.svg`} />
+        </section>
+        <h2 className="text-white text-2xl"> {"YOU PICKED" |> React.string} </h2>
+      </div>
+      <div className="flex flex-col items-center gap-4">
+        {!isLoading
+          ? <section
+              className={`${setColor(
+                  housePick->Option.getUnsafe,
+                )} p-4 w-40 h-40 flex justify-center items-center bg-white rounded-full border-[16px]`}>
+              <img src={`/icon-${housePick->Option.getUnsafe}.svg`} />
+            </section>
+          : <> {"loading" |> React.string} </>}
+        <h2 className="text-white text-2xl"> {"THE HOUSE PICKED" |> React.string} </h2>
+      </div>
     </div>
-    <div className="flex flex-col items-center gap-4">
-      <section
-        className={`${setColor(
-            housePick->Option.getUnsafe,
-          )} p-4 w-40 h-40 flex justify-center items-center bg-white rounded-full border-[16px] cursor-pointer hover:scale-110 trasnsition-all duration-300 ease-in-out`}>
-        <img src={`/icon-${housePick->Option.getUnsafe}.svg`} />
-      </section>
-      <h2 className="text-white text-2xl"> {"THE HOUSE PICKED" |> React.string} </h2>
-    </div>
-  </div>
+    {!isLoading ? <div className="flex flex-col justify-center items-center mt-12 gap-4 w-3/4 mx-auto">
+        <div className="text-white text-6xl text-center"> {gameStatus(winner)} </div>
+        <button
+          onClick={_ => setOpen(_ => false)}
+          className="p-4 w-full flex justify-center items-center bg-white rounded-lg hover:scale-110 trasnsition-all duration-300 ease-in-out">
+          <h2 className="text-dark-text text-2xl"> {"PLAY AGAIN" |> React.string} </h2>
+        </button>
+    </div> : <></>}
+  </>
 }

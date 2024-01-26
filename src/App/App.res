@@ -31,7 +31,7 @@ let make = () => {
     setOpenGame(_ => true)
   }
 
-  <Layout>
+  <GameSection>
     {!openGame
       ? <div className="flex justify-center items-center">
           {<div
@@ -50,6 +50,6 @@ let make = () => {
             ->React.array}
           </div>}
         </div>
-      : <GameModal pick={pick} />}
-  </Layout>
+      : <GameModal pick={pick} setOpen={setOpenGame} />}
+  </GameSection>
 }
