@@ -20,21 +20,18 @@ let play = (player, comp) =>
   | (Paper, Rock | Spock)
   | (Rock, Lizard | Scissor)
   | (Lizard, Spock | Paper)
-  | (Spock, Scissor | Rock)
-  => Win
+  | (Spock, Scissor | Rock) =>
+    Win
   | (Paper | Lizard, Scissor)
   | (Rock | Spock, Paper)
   | (Lizard | Scissor, Rock)
   | (Spock | Paper, Lizard)
-  | (Scissor | Rock, Spock)
-  => Lose
-  | (Scissor, Scissor) 
-  | (Paper, Paper) 
-  | (Rock, Rock) 
-  | (Lizard, Lizard) 
-  | (Spock, Spock) 
-  => Draw
+  | (Scissor | Rock, Spock) =>
+    Lose
+  | (Scissor, Scissor)
+  | (Paper, Paper)
+  | (Rock, Rock)
+  | (Lizard, Lizard)
+  | (Spock, Spock) =>
+    Draw
   }
-
-  let a = Rock
-  let b = Paper

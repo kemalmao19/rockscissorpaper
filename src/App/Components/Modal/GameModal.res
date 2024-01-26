@@ -40,10 +40,8 @@ let make = (~pick, ~setOpen) => {
 
   let _ = setTimeout(() => setIsLoading(_ => false), 2000)
 
-  let (show, setShow) = React.useState(() => !isLoading)
-
   <>
-    <div id="game" className={`grid grid-cols-2 my-10`}>
+    <div id="game" className={`grid grid-cols-2`}>
       <div className="flex flex-col items-center gap-4">
         <section
           className={`${setColor(
@@ -65,7 +63,7 @@ let make = (~pick, ~setOpen) => {
               className={`p-4 w-40 h-40 flex justify-center items-center bg-dark-text rounded-full`}>
               <img src={`/logo.svg`} />
             </section>}
-        <h2 className="text-white text-2xl">
+        <h2 className="text-white text-2xl text-center">
           {!isLoading ? "THE HOUSE PICKED" |> React.string : "WAIT..." |> React.string}
         </h2>
       </div>

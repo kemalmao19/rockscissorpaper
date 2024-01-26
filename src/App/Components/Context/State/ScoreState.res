@@ -10,14 +10,21 @@ module Context = {
 module Provider = {
   @react.component
   let make = (~children) => {
-    let (state, dispatch) = React.useReducer((state, action) => {
+    let (score, setScore) = React.useState(() => 0);
+    let (state, dispatch) = React.useReducer((state, action) =>
       switch action {
       | Increment => state + 1
       | Decrement => state - 1
       | Pause => state
-      }
-    }, 0)
+      },
+      score
+    );
 
-    <Context.Provider value=(state, dispatch)> children </Context.Provider>
-  }
+    React.useEffect1(() => {
+      setScore(_=>state);
+      None;
+    }, [state]);
+
+    <Context.Provider value=(state, dispatch)> {children} </Context.Provider>;
+  };
 }
